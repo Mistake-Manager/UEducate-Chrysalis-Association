@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=1280, height=720, initial-scale=1.0"/>
+  <title>UEducate Ecosystem Slide</title>
+  
+  <!-- CDN Links -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ===== BASE ===== */
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #0F172A;
+      font-family: 'Inter', sans-serif;
+      color: #ffffff;
+      height: 100vh;
+    }
+
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background-image: url("https://page.gensparksite.com/slides_images/db6c9a5bcb5eac8a488d4d126f65f8df.webp");
+      background-size: cover;
+      background-position: center;
+      margin: 0 auto;
+    }
+
+    /* ===== OVERLAY & ORB ===== */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(15, 23, 42, 0.92);
+      z-index: 1;
+    }
+
+    .orb {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background-color: #38BDF8;
+      filter: blur(120px);
+      opacity: 0.05;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 8s infinite alternate;
+    }
+
+    /* ===== CONTENT ===== */
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+      height: 100%;
+      padding: 60px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+
+    /* ===== HEADER ===== */
+    .header-section {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    .slide-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 48px;
+      margin-bottom: 16px;
+      color: #ffffff;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .slide-subtitle {
+      font-size: 20px;
+      color: #94A3B8;
+      font-weight: 400;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .highlight-blue {
+      color: #38BDF8;
+    }
+
+    /* ===== GRID ===== */
+    .grid-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      flex: 1;
+      align-items: center;
+    }
+
+    /* ===== CARDS ===== */
+    .product-card {
+      width: 340px;
+      height: 180px;
+      padding: 24px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      background-color: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(56, 189, 248, 0.15);
+      background-color: rgba(30, 41, 59, 0.9);
+    }
+
+    .card-icon-wrapper {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 24px;
+      color: #38BDF8;
+      background-color: rgba(56, 189, 248, 0.1);
+    }
+
+    .card-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: #F8FAFC;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #CBD5E1;
+      margin: 0;
+    }
+
+    /* ===== CARD COLORS ===== */
+    .card-green .card-icon-wrapper { 
+      background-color: rgba(34, 197, 94, 0.1); 
+      color: #22C55E; 
+    }
+    .card-green:hover { 
+      border-color: rgba(34, 197, 94, 0.6); 
+      box-shadow: 0 20px 40px rgba(34, 197, 94, 0.15); 
+    }
+
+    .card-purple .card-icon-wrapper { 
+      background-color: rgba(168, 85, 247, 0.1); 
+      color: #A855F7; 
+    }
+    .card-purple:hover { 
+      border-color: rgba(168, 85, 247, 0.6); 
+      box-shadow: 0 20px 40px rgba(168, 85, 247, 0.15); 
+    }
+
+    .card-amber .card-icon-wrapper { 
+      background-color: rgba(245, 158, 11, 0.1); 
+      color: #F59E0B; 
+    }
+    .card-amber:hover { 
+      border-color: rgba(245, 158, 11, 0.6); 
+      box-shadow: 0 20px 40px rgba(245, 158, 11, 0.15); 
+    }
+
+    .card-rose .card-icon-wrapper { 
+      background-color: rgba(244, 63, 94, 0.1); 
+      color: #F43F5E; 
+    }
+    .card-rose:hover { 
+      border-color: rgba(244, 63, 94, 0.6); 
+      box-shadow: 0 20px 40px rgba(244, 63, 94, 0.15); 
+    }
+
+    /* ===== BOTTOM BAR ===== */
+    .bottom-bar {
+      background-color: rgba(56, 189, 248, 0.1);
+      border-top: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 16px;
+      text-align: center;
+      border-radius: 8px;
+      margin-top: auto;
+    }
+
+    .bottom-text {
+      color: #38BDF8;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      font-size: 16px;
+      margin: 0;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.05; transform: translate(-50%, -50%) scale(0.9); }
+      100% { opacity: 0.1; transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    /* ===== ANIMATION DELAYS ===== */
+    .delay-1 { animation: fadeInUp 0.6s ease-out 0.1s forwards; opacity: 0; }
+    .delay-2 { animation: fadeInUp 0.6s ease-out 0.2s forwards; opacity: 0; }
+    .delay-3 { animation: fadeInUp 0.6s ease-out 0.3s forwards; opacity: 0; }
+    .delay-4 { animation: fadeInUp 0.6s ease-out 0.4s forwards; opacity: 0; }
+    .delay-5 { animation: fadeInUp 0.6s ease-out 0.5s forwards; opacity: 0; }
+  </style>
+</head>
+
+<body>
+  <div class="slide-container">
+    <div class="overlay"></div>
+    <div class="orb"></div>
+    
+    <div class="content-wrapper">
+      <!-- Header -->
+      <div class="header-section">
+        <p class="slide-title">Complete Learning & <span class="highlight-blue">Management Solution</span></p>
+        <p class="slide-subtitle">A comprehensive ecosystem designed to transform educational delivery and administration.</p>
+      </div>
+
+      <!-- Product Cards Grid -->
+      <div class="grid-container">
+        <!-- KATBOOK -->
+        <div class="product-card delay-1">
+          <div class="card-icon-wrapper">
+            <i class="fas fa-brain"></i>
+          </div>
+          <p class="card-title">KATBOOK</p>
+          <p class="card-desc">AI-powered learning platform delivering personalized educational experiences for every student.</p>
+        </div>
+
+        <!-- GreenBridge -->
+        <div class="product-card card-green delay-2">
+          <div class="card-icon-wrapper">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <p class="card-title">GreenBridge</p>
+          <p class="card-desc">Seamless integration of physical textbooks with digital content for hybrid learning.</p>
+        </div>
+
+        <!-- KAMPUS -->
+        <div class="product-card card-purple delay-3">
+          <div class="card-icon-wrapper">
+            <i class="fas fa-school"></i>
+          </div>
+          <p class="card-title">KAMPUS</p>
+          <p class="card-desc">Comprehensive school management system handling admissions, fees, and operations.</p>
+        </div>
+
+        <!-- KSMACC -->
+        <div class="product-card card-rose delay-4">
+          <div class="card-icon-wrapper">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <p class="card-title">KSMACC</p>
+          <p class="card-desc">Secure communication system ensuring privacy and safety for all stakeholders.</p>
+        </div>
+
+        <!-- UTeach & ULearn -->
+        <div class="product-card card-amber delay-5">
+          <div class="card-icon-wrapper">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <p class="card-title">UTeach & ULearn</p>
+          <p class="card-desc">Dedicated support tools and resources for teaching enablement and student learning.</p>
+        </div>
+      </div>
+
+      <!-- Bottom Highlight -->
+      <div class="bottom-bar delay-5">
+        <p class="bottom-text">End-to-end solution for schools, teachers, and students</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

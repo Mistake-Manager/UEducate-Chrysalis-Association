@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=1280, height=720, initial-scale=1.0"/>
+  <title>Business Model - Pricing Tiers</title>
+  
+  <!-- CDN Links -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+
+  <style>
+    /* ===== BASE ===== */
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #0F172A;
+      font-family: 'Inter', sans-serif;
+      color: #ffffff;
+      height: 100vh;
+    }
+
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background-image: url("https://page.gensparksite.com/slides_images/db6c9a5bcb5eac8a488d4d126f65f8df.webp");
+      background-size: cover;
+      background-position: center;
+      margin: 0 auto;
+    }
+
+    /* ===== OVERLAY & GRID ===== */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(15, 23, 42, 0.92);
+      z-index: 1;
+    }
+
+    .grid-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), 
+                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* ===== CONTENT ===== */
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 40px 60px;
+      box-sizing: border-box;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      animation: fadeInDown 0.8s ease-out 0.1s forwards;
+      opacity: 0;
+    }
+
+    .subtitle {
+      font-weight: 600;
+      font-size: 16px;
+      color: #38BDF8;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 48px;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    /* ===== PRICING CARDS CONTAINER ===== */
+    .cards-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      flex: 1;
+      perspective: 1500px;
+      padding-top: 10px;
+    }
+
+    /* ===== PRICING CARDS ===== */
+    .pricing-card {
+      width: 300px;
+      height: 420px;
+      border-radius: 20px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      z-index: 20;
+    }
+
+    /* ===== BASIC PLAN (BLUE) ===== */
+    .card-basic {
+      background-color: rgba(15, 23, 42, 0.6);
+      border-top: 4px solid #38BDF8;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(56, 189, 248, 0.05);
+      transform: rotateY(10deg) scale(0.95);
+      transform-origin: right center;
+    }
+
+    .card-basic:hover {
+      box-shadow: 0 20px 40px rgba(56, 189, 248, 0.2), inset 0 0 30px rgba(56, 189, 248, 0.1);
+      border-color: #38BDF8;
+      transform: translateY(-15px) scale(1.02) rotateY(0deg);
+    }
+
+    .text-basic { color: #38BDF8; }
+    .bg-basic { background-color: rgba(56, 189, 248, 0.15); }
+
+    /* ===== STANDARD PLAN (PURPLE) ===== */
+    .card-standard {
+      background-color: rgba(15, 23, 42, 0.6);
+      border-top: 4px solid #A78BFA;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(167, 139, 250, 0.05);
+    }
+
+    .card-standard:hover {
+      box-shadow: 0 20px 40px rgba(167, 139, 250, 0.2), inset 0 0 30px rgba(167, 139, 250, 0.1);
+      border-color: #A78BFA;
+    }
+
+    .text-standard { color: #A78BFA; }
+    .bg-standard { background-color: rgba(167, 139, 250, 0.15); }
+
+    /* ===== PREMIUM PLAN (GOLD) ===== */
+    .card-premium {
+      background-color: rgba(15, 23, 42, 0.6);
+      border-top: 4px solid #FBBF24;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(251, 191, 36, 0.05);
+      transform: scale(1.05);
+      z-index: 10;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+
+    .card-premium:hover {
+      transform: translateY(-15px) scale(1.1);
+      box-shadow: 0 30px 60px rgba(251, 191, 36, 0.25), inset 0 0 40px rgba(251, 191, 36, 0.15);
+      border-color: #FBBF24;
+    }
+
+    .text-premium { color: #FBBF24; }
+    .bg-premium { background-color: rgba(251, 191, 36, 0.15); }
+
+    /* ===== CARD CONTENT ===== */
+    .plan-name {
+      font-weight: 600;
+      font-size: 20px;
+      color: #ffffff;
+      margin: 0 0 10px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .price-container {
+      margin: 15px 0 25px 0;
+      text-align: center;
+    }
+
+    .currency {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 28px;
+      vertical-align: top;
+      margin-right: 2px;
+    }
+
+    .amount {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 56px;
+      line-height: 1;
+    }
+
+    .period {
+      font-size: 14px;
+      color: #94A3B8;
+      margin-top: 5px;
+    }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      text-align: left;
+    }
+
+    .features-list li {
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #E2E8F0;
+      display: flex;
+      align-items: center;
+    }
+
+    .features-list i {
+      margin-right: 10px;
+      font-size: 12px;
+    }
+
+    /* ===== PREMIUM BADGE ===== */
+    .badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #0F172A;
+      background-color: #FBBF24;
+      box-shadow: 0 4px 10px rgba(251, 191, 36, 0.4);
+    }
+
+    /* ===== BOTTOM HIGHLIGHT ===== */
+    .highlight-bar {
+      background-color: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 15px 40px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      animation: glow-pulse 3s infinite;
+    }
+
+    .highlight-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      color: #E0F2FE;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .highlight-icon {
+      color: #38BDF8;
+      font-size: 20px;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glow-pulse {
+      0% { box-shadow: 0 0 5px rgba(56, 189, 248, 0.1); }
+      50% { box-shadow: 0 0 20px rgba(56, 189, 248, 0.3); }
+      100% { box-shadow: 0 0 5px rgba(56, 189, 248, 0.1); }
+    }
+
+    /* ===== ANIMATION DELAYS ===== */
+    .delay-1 { animation: fadeInUp 0.6s ease-out 0.3s forwards; opacity: 0; }
+    .delay-2 { animation: fadeInUp 0.6s ease-out 0.4s forwards; opacity: 0; }
+    .delay-3 { animation: fadeInUp 0.6s ease-out 0.5s forwards; opacity: 0; }
+    .delay-4 { animation: glow-pulse 3s infinite 0.7s; opacity: 1; }
+  </style>
+</head>
+
+<body>
+  <div class="slide-container">
+    <div class="overlay"></div>
+    <div class="grid-bg"></div>
+    
+    <div class="content-wrapper">
+      <!-- Header -->
+      <div class="header">
+        <p class="subtitle">Business Model</p>
+        <p class="title">Simple & Scalable Pricing</p>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="cards-container">
+        <!-- Basic Plan -->
+        <div class="pricing-card card-basic delay-1">
+          <p class="plan-name text-basic">Basic</p>
+          <div class="price-container">
+            <span class="currency text-basic">₹</span>
+            <span class="amount text-basic">500</span>
+            <p class="period">per student / year</p>
+          </div>
+          <ul class="features-list">
+            <li><i class="fas fa-check-circle text-basic"></i>Essential Learning Tools</li>
+            <li><i class="fas fa-check-circle text-basic"></i>Digital Access</li>
+            <li><i class="fas fa-check-circle text-basic"></i>Standard Support</li>
+            <li><i class="fas fa-check-circle text-basic"></i>Student Dashboard</li>
+          </ul>
+        </div>
+
+        <!-- Standard Plan -->
+        <div class="pricing-card card-standard delay-2">
+          <p class="plan-name text-standard">Standard</p>
+          <div class="price-container">
+            <span class="currency text-standard">₹</span>
+            <span class="amount text-standard">2,000</span>
+            <p class="period">per student / year</p>
+          </div>
+          <ul class="features-list">
+            <li><i class="fas fa-check-circle text-standard"></i>All Basic Features</li>
+            <li><i class="fas fa-check-circle text-standard"></i>Advanced AI Analytics</li>
+            <li><i class="fas fa-check-circle text-standard"></i>Teacher Resources</li>
+            <li><i class="fas fa-check-circle text-standard"></i>Parent App Access</li>
+          </ul>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="pricing-card card-premium delay-3">
+          <div class="badge">Most Complete</div>
+          <p class="plan-name text-premium">Premium</p>
+          <div class="price-container">
+            <span class="currency text-premium">₹</span>
+            <span class="amount text-premium">6,000</span>
+            <p class="period">per student / year</p>
+          </div>
+          <ul class="features-list">
+            <li><i class="fas fa-check-circle text-premium"></i>All Standard Features</li>
+            <li><i class="fas fa-check-circle text-premium"></i>Premium Content Library</li>
+            <li><i class="fas fa-check-circle text-premium"></i>Dedicated Account Mgr</li>
+            <li><i class="fas fa-check-circle text-premium"></i>24/7 Priority Support</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Highlight -->
+      <div class="highlight-bar delay-4">
+        <i class="fas fa-chart-line highlight-icon"></i>
+        <p class="highlight-text">Flexible pricing enables large-scale adoption</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

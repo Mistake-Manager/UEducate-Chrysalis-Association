@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1280, height=720, initial-scale=1.0" />
+  <title>Market Opportunity Calculation</title>
+
+  <!-- Styles -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    /* ===== BASE ===== */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0F172A;
+      font-family: 'Inter', sans-serif;
+      color: #ffffff;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+
+      background-image: url("https://page.gensparksite.com/slides_images/db6c9a5bcb5eac8a488d4d126f65f8df.webp");
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ===== OVERLAY ===== */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(15, 23, 42, 0.92);
+      z-index: 1;
+    }
+
+    /* ===== CONTENT ===== */
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      padding: 40px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+
+    /* ===== HEADER ===== */
+    .header-section {
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    .main-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 44px;
+    }
+
+    .highlight-text {
+      color: #38BDF8;
+    }
+
+    /* ===== CALCULATION ===== */
+    .calculation-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .calc-card {
+      width: 180px;
+      padding: 22px 15px;
+      border-radius: 16px;
+      text-align: center;
+
+      background-color: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      backdrop-filter: blur(8px);
+
+      animation: flipIn 0.8s forwards;
+      opacity: 0;
+    }
+
+    .calc-card:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+
+    .icon-circle {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #38BDF8;
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .card-number {
+      font-family: 'Poppins';
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .card-label {
+      font-size: 13px;
+      color: #94A3B8;
+    }
+
+    .operator {
+      font-size: 32px;
+      color: #64748B;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    /* ===== RESULT ===== */
+    .result-card {
+      width: 240px;
+      background-color: rgba(6, 78, 59, 0.4);
+      border: 2px solid #22C55E;
+
+      animation: popIn 0.8s forwards 1.5s;
+    }
+
+    .result-card .card-number {
+      font-size: 38px;
+      color: #22C55E;
+    }
+
+    /* ===== BOTTOM ===== */
+    .bottom-highlight-container {
+      text-align: center;
+      margin-bottom: 20px;
+      animation: fadeInUp 1s forwards 2s;
+      opacity: 0;
+    }
+
+    .highlight-pill {
+      display: inline-block;
+      padding: 12px 30px;
+      border-radius: 50px;
+      border: 1px solid #38BDF8;
+    }
+
+    .highlight-message {
+      font-family: 'Poppins';
+      font-size: 20px;
+    }
+
+    .highlight-emphasis {
+      color: #38BDF8;
+      font-weight: 700;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes flipIn {
+      from { opacity: 0; transform: rotateX(-90deg); }
+      to { opacity: 1; transform: rotateX(0); }
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1.05); }
+    }
+
+    /* ===== DELAYS ===== */
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.6s; }
+    .delay-3 { animation-delay: 1s; }
+    .delay-op-1 { animation-delay: 0.4s; }
+    .delay-op-2 { animation-delay: 0.8s; }
+    .delay-op-3 { animation-delay: 1.2s; }
+  </style>
+</head>
+
+<body>
+
+  <div class="slide-container">
+
+    <div class="overlay"></div>
+
+    <div class="content-wrapper">
+
+      <!-- HEADER -->
+      <div class="header-section">
+        <h1 class="main-title">
+          Your Existing Reach = <span class="highlight-text">Revenue Potential</span>
+        </h1>
+      </div>
+
+      <!-- CALCULATION -->
+      <div class="calculation-container">
+
+        <div class="calc-card delay-1">
+          <div class="icon-circle"><i class="fa-solid fa-school"></i></div>
+          <p class="card-number">2,000</p>
+          <p class="card-label">Schools</p>
+        </div>
+
+        <div class="operator delay-op-1">×</div>
+
+        <div class="calc-card delay-2">
+          <div class="icon-circle"><i class="fa-solid fa-chalkboard-user"></i></div>
+          <p class="card-number">10</p>
+          <p class="card-label">Classes/School</p>
+        </div>
+
+        <div class="operator delay-op-2">×</div>
+
+        <div class="calc-card delay-3">
+          <div class="icon-circle"><i class="fa-solid fa-users"></i></div>
+          <p class="card-number">30</p>
+          <p class="card-label">Students/Class</p>
+        </div>
+
+        <div class="operator delay-op-3">=</div>
+
+        <div class="calc-card result-card">
+          <div class="icon-circle"><i class="fa-solid fa-graduation-cap"></i></div>
+          <p class="card-number">6,00,000</p>
+          <p class="card-label">Total Students</p>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM -->
+      <div class="bottom-highlight-container">
+        <div class="highlight-pill">
+          <p class="highlight-message">
+            <span class="highlight-emphasis">6 Lakh Students</span> Already Within Your Ecosystem
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

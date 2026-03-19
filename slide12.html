@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=1280, height=720, initial-scale=1.0" name="viewport"/>
+<title>Closing CTA Slide</title>
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  overflow: visible; /* ONLY FIX */
+  background-color: #0F172A;
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ✅ PRINT FIX WITHOUT TOUCHING DESIGN */
+@media print {
+  body {
+    margin: 0;
+  }
+
+  .print-scale {
+    transform: scale(0.78);
+    transform-origin: top center;
+  }
+}
+
+/* ===== YOUR ORIGINAL DESIGN (UNCHANGED) ===== */
+
+.slide-container {
+  width: 1280px;
+  height: 720px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-image: url("https://page.gensparksite.com/slides_images/db6c9a5bcb5eac8a488d4d126f65f8df.webp");
+  background-size: cover;
+  background-position: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.95);
+  z-index: 1;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 60px;
+  justify-content: space-between;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.main-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -1px;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* Cards */
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex: 1;
+  perspective: 1000px;
+}
+
+.stat-card {
+  background-color: rgba(30, 41, 59, 0.6);
+  border-radius: 20px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 340px;
+  height: 320px;
+  position: relative;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.stat-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  z-index: 20;
+}
+
+.card-blue {
+  border-top: 6px solid #38BDF8;
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+.card-green {
+  border-top: 6px solid #22C55E;
+  animation: fadeInUp 0.8s ease-out 0.4s backwards;
+  transform: scale(1.05);
+  z-index: 5;
+  height: 340px;
+}
+
+.card-gold {
+  border-top: 6px solid #FBBF24;
+  animation: fadeInUp 0.8s ease-out 0.6s backwards;
+}
+
+.card-amount {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 56px;
+  margin: 20px 0;
+}
+
+.card-label {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.card-desc {
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Footer */
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: fadeInUp 0.8s ease-out 0.8s backwards;
+}
+
+.closing-line {
+  font-size: 20px;
+  text-align: center;
+}
+
+.cta-box {
+  border: 2px solid #22C55E;
+  padding: 16px 48px;
+  border-radius: 50px;
+}
+
+.cta-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="print-scale">
+
+<div class="slide-container">
+  <div class="overlay"></div>
+
+  <div class="content-wrapper">
+
+    <div class="header">
+      <h1 class="main-title">Unlocking Immediate & Scalable Revenue</h1>
+    </div>
+
+    <div class="cards-container">
+
+      <div class="stat-card card-blue">
+        <p class="card-label">Immediate Opportunity</p>
+        <div class="card-amount">₹30 Cr</div>
+        <p class="card-desc">Revenue available right now within current network.</p>
+      </div>
+
+      <div class="stat-card card-green">
+        <p class="card-label">Direct Share for Chrysalis</p>
+        <div class="card-amount">₹9 Cr</div>
+        <p class="card-desc">Zero investment required. Pure revenue addition.</p>
+      </div>
+
+      <div class="stat-card card-gold">
+        <p class="card-label">Long-Term Potential</p>
+        <div class="card-amount">₹360 Cr</div>
+        <p class="card-desc">Future scalability with Premium model adoption.</p>
+      </div>
+
+    </div>
+
+    <div class="footer-section">
+      <p class="closing-line">
+        This is not just a partnership — this is a revenue transformation opportunity.
+      </p>
+
+      <div class="cta-box">
+        <p class="cta-text">₹9 Crore. Your Network. No Investment.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>
